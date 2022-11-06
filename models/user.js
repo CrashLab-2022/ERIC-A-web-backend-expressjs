@@ -27,8 +27,8 @@ module.exports = function (sequelize, DataTypes) {
         },
         {}
     );
-    user.associate = function (models) {
-        user.hasMany(models.delivery);
-    };
+    // user.associate = function (models) {
+    //     user.hasMany(models.delivery);
+    // };
     return user;
 };

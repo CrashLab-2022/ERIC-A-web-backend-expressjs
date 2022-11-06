@@ -8,6 +8,18 @@ module.exports = function (sequelize, DataTypes) {
                 autoIncrement: true,
                 allowNull: false,
             },
+            name: {
+                type: DataTypes.STRING(100),
+                allowNull: false,
+            },
+            password: {
+                type: DataTypes.STRING(30),
+                allowNull: false,
+            },
+            phoneNumber: {
+                type: DataTypes.STRING(20),
+                allowNull: false,
+            },
             departure: {
                 type: DataTypes.STRING(10),
                 allowNull: false,
@@ -27,8 +39,8 @@ module.exports = function (sequelize, DataTypes) {
         },
         {}
     );
-    delivery.associate = function (models) {
-        delivery.belongsTo(models.user);
-    };
+    // delivery.associate = function (models) {
+    //     delivery.belongsTo(models.user);
+    // };
     return delivery;
 };
