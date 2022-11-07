@@ -5,10 +5,22 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var dotenv = require('dotenv');
 var sequelize = require('sequelize');
+var cors = require('cors');
 
 var deliveryRouter = require('./routes/deliveryRoute');
 
 var app = express();
+
+const whitelist = ['http://localhost:3000', 'https://eric-a.netlify.app'];
+const corsOptions = {
+    origin: function (origin, callback) {
+        if (whitelist.indexOf(origin) !== -1) {
+            callback(null, true);
+        }
+    },
+};
+
+app.use(cors(corsOptions));
 
 dotenv.config();
 const db = require('./models');
