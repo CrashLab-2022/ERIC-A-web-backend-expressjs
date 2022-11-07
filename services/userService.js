@@ -12,4 +12,10 @@ module.exports = {
             { transaction: transaction }
         );
     },
+    findByPhoneNumber: async function (phoneNumber) {
+        const userResult = await user.findOne({
+            where: { phoneNumber: phoneNumber },
+        });
+        return userResult;
+    },
 };

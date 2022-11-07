@@ -15,4 +15,24 @@ module.exports = {
             res.status(400).send({ statusCode: 400, res: '회원가입 실패' });
         }
     },
+    checkPhoneNumber: async function (req, res) {
+        try {
+            const phoneNumber = req.params.phoneNumber;
+            const userResult = await userService.findByPhoneNumber(phoneNumber);
+            if (userResult == null) {
+                res.status(200).send({
+                    statusCode: 200,
+                    res: true,
+                });
+            } else {
+                res.status(200).send({
+                    statusCode: 200,
+                    res: false,
+                });
+            }
+        } catch (err) {
+            console.log(err);
+            res.status(400).send({ statusCode: 400, res: '중복 조회 실패' });
+        }
+    },
 };
