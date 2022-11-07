@@ -1,10 +1,10 @@
-const { delivery, user } = require('../models');
+const { delivery, user, Sequelize } = require('../models');
 
 module.exports = {
     createUser: async function (req, transaction) {
         await user.create(
             {
-                uid: req.body.phoneNumber,
+                phoneNumber: req.body.phoneNumber,
                 name: req.body.name,
                 password: req.body.password,
                 status: 1,

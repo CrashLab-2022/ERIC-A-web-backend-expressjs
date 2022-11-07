@@ -8,7 +8,7 @@ module.exports = function (sequelize, DataTypes) {
                 autoIncrement: true,
                 allowNull: false,
             },
-            uid: {
+            phoneNumber: {
                 type: DataTypes.STRING(100),
                 allowNull: false,
             },
