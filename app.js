@@ -8,6 +8,7 @@ var sequelize = require('sequelize');
 var cors = require('cors');
 
 var deliveryRouter = require('./routes/deliveryRoute');
+var userRouter = require('./routes/userRoute');
 
 var app = express();
 
@@ -37,6 +38,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/delivery', deliveryRouter);
+app.use('/user', userRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

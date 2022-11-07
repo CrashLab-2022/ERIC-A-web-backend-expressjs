@@ -9,7 +9,7 @@ module.exports = function (sequelize, DataTypes) {
                 allowNull: false,
             },
             uid: {
-                type: DataTypes.INTEGER(255),
+                type: DataTypes.STRING(100),
                 allowNull: false,
             },
             name: {
@@ -27,8 +27,8 @@ module.exports = function (sequelize, DataTypes) {
         },
         {}
     );
-    // user.associate = function (models) {
-    //     user.hasMany(models.delivery);
-    // };
+    user.associate = function (models) {
+        user.hasMany(models.delivery);
+    };
     return user;
 };

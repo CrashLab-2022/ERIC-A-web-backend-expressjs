@@ -39,8 +39,8 @@ module.exports = function (sequelize, DataTypes) {
         },
         {}
     );
-    // delivery.associate = function (models) {
-    //     delivery.belongsTo(models.user);
-    // };
+    delivery.associate = function (models) {
+        delivery.belongsTo(models.user);
+    };
     return delivery;
 };
