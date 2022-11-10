@@ -16,6 +16,21 @@ module.exports = {
         const userResult = await user.findOne({
             where: { phoneNumber: phoneNumber },
         });
-        return userResult;
+        return userResult.dataValues;
+    },
+    signIn: async function (phoneNumber, password, session) {
+        const userResult = await user.findOne({
+            where: { phoneNumber: phoneNumber, password: password },
+        });
+        if (userResult == null) {
+            return null;
+        } else {
+            session.phoneNumber = userResult.dataValues.phoneNumber;
+            session.name = userResult.dataValues.name;
+            session.isLogined = true;
+            console.log(session);
+            session.save(function () {});
+            return userResult;
+        }
     },
 };

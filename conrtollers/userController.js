@@ -35,4 +35,24 @@ module.exports = {
             res.status(400).send({ statusCode: 400, res: '중복 조회 실패' });
         }
     },
+    signIn: async function (req, res) {
+        let phoneNumber = req.body.phoneNumber;
+        let password = req.body.password;
+        let session = req.session;
+        try {
+            const result = await userService.signIn(
+                phoneNumber,
+                password,
+                session
+            );
+            if (result != null) {
+                res.status(200).send(session);
+            } else {
+                res.status(500).send('회원 정보 불일치');
+            }
+        } catch (err) {
+            console.log(err);
+            res.status(400).send('로그인 오류');
+        }
+    },
 };
