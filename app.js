@@ -6,22 +6,41 @@ var logger = require('morgan');
 var dotenv = require('dotenv');
 var sequelize = require('sequelize');
 var cors = require('cors');
-
-var deliveryRouter = require('./routes/deliveryRoute');
-var userRouter = require('./routes/userRoute');
+var session = require('express-session');
+var fileStore = require('session-file-store')(session);
 
 var app = express();
 
-const whitelist = ['http://localhost:3000', 'https://eric-a.netlify.app'];
-const corsOptions = {
-    origin: function (origin, callback) {
-        if (whitelist.indexOf(origin) !== -1) {
-            callback(null, true);
-        }
-    },
-};
+// const whitelist = ['http://localhost:3000', 'https://eric-a.netlify.app'];
+// const corsOptions = {
+//     origin: function (origin, callback) {
+//         if (whitelist.indexOf(origin) !== -1) {
+//             callback(null, true);
+//         }
+//     },
+// };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+
+app.use(
+    cors({
+        origin: true,
+        credentials: true,
+    })
+);
+
+app.use(
+    session({
+        secret: 'csyrock',
+        resave: false,
+        saveUninitialized: true,
+        // store: new fileStore(),
+    })
+);
+
+var mainRouter = require('./routes/mainRoute');
+var deliveryRouter = require('./routes/deliveryRoute');
+var userRouter = require('./routes/userRoute');
 
 dotenv.config();
 const db = require('./models');
@@ -37,6 +56,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/main', mainRouter);
 app.use('/delivery', deliveryRouter);
 app.use('/user', userRouter);
 
