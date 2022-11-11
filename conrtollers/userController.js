@@ -45,7 +45,6 @@ module.exports = {
                 password,
                 session
             );
-            console.log(result);
             if (result != null) {
                 res.status(200).send(session);
             } else {
@@ -57,7 +56,6 @@ module.exports = {
         }
     },
     checkLogin: async function (req, res) {
-        console.log(req.session);
         if (req.session.isLogined !== undefined) {
             console.log('session exist');
             res.status(200).send(true);
@@ -67,7 +65,6 @@ module.exports = {
         }
     },
     signOut: async function (req, res) {
-        console.log(req.session);
         if (req.session.isLogined !== undefined) {
             req.session.destroy(function (err) {
                 if (err) {
@@ -83,7 +80,6 @@ module.exports = {
         }
     },
     getSession: async function (req, res) {
-        console.log(req.session);
         if (req.session.isLogined !== undefined) {
             console.log('session exist');
             res.status(200).send(req.session);
