@@ -16,7 +16,7 @@ module.exports = {
         const userResult = await user.findOne({
             where: { phoneNumber: phoneNumber },
         });
-        return userResult.dataValues;
+        return userResult;
     },
     signIn: async function (phoneNumber, password, session) {
         const userResult = await user.findOne({
