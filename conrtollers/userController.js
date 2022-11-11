@@ -45,6 +45,7 @@ module.exports = {
                 password,
                 session
             );
+            console.log(result);
             if (result != null) {
                 res.status(200).send(session);
             } else {
@@ -53,6 +54,16 @@ module.exports = {
         } catch (err) {
             console.log(err);
             res.status(400).send('로그인 오류');
+        }
+    },
+    checkLogin: async function (req, res) {
+        console.log(req.session);
+        if (req.session.isLogined !== undefined) {
+            console.log('session exist');
+            res.status(200).send(true);
+        } else {
+            console.log('session not exist');
+            res.status(200).send(false);
         }
     },
 };
