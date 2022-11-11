@@ -12,10 +12,6 @@ module.exports = function (sequelize, DataTypes) {
                 type: DataTypes.STRING(100),
                 allowNull: false,
             },
-            password: {
-                type: DataTypes.STRING(30),
-                allowNull: false,
-            },
             phoneNumber: {
                 type: DataTypes.STRING(20),
                 allowNull: false,
@@ -34,6 +30,10 @@ module.exports = function (sequelize, DataTypes) {
             },
             inPerson: {
                 type: DataTypes.INTEGER(1),
+                allowNull: false,
+            },
+            status: {
+                type: DataTypes.STRING(100),
                 allowNull: false,
             },
         },
