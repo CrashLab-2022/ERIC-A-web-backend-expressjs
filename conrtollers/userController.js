@@ -66,4 +66,20 @@ module.exports = {
             res.status(200).send(false);
         }
     },
+    signOut: async function (req, res) {
+        console.log(req.session);
+        if (req.session.isLogined !== undefined) {
+            req.session.destroy(function (err) {
+                if (err) {
+                    console.log('로그아웃 오류');
+                    res.status(400).send(false);
+                }
+                console.log('로그아웃 성공');
+                res.status(200).send(true);
+            });
+        } else {
+            console.log('로그인 상태 아님');
+            res.status(500).send(false);
+        }
+    },
 };
