@@ -2,6 +2,13 @@ const { delivery, user } = require('../models');
 
 module.exports = {
     createDelivery: async function (req, transaction) {
+        let today = new Date();
+
+        let dateResult = today.toLocaleDateString();
+        let timeResult = today.toLocaleTimeString();
+
+        console.log(dateResult, timeResult);
+
         await delivery.create(
             {
                 name: req.body.name,
@@ -12,6 +19,8 @@ module.exports = {
                 inPerson: req.body.isInPerson,
                 status: req.body.status,
                 userId: req.body.userId,
+                date: dateResult,
+                time: timeResult,
             },
             { transaction: transaction }
         );
@@ -34,9 +43,10 @@ module.exports = {
                     : '두고 가기',
                 item: d.dataValues.item,
                 status: d.dataValues.status,
+                date: d.dataValues.date,
+                time: d.dataValues.time,
             });
         }
-        console.log(result);
         return result;
     },
 };
