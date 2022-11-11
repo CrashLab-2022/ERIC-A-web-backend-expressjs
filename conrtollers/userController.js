@@ -82,4 +82,14 @@ module.exports = {
             res.status(500).send(false);
         }
     },
+    getSession: async function (req, res) {
+        console.log(req.session);
+        if (req.session.isLogined !== undefined) {
+            console.log('session exist');
+            res.status(200).send(req.session);
+        } else {
+            console.log('session not exist');
+            res.status(200).send(false);
+        }
+    },
 };
