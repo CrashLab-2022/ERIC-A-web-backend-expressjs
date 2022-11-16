@@ -28,6 +28,7 @@ module.exports = {
             session.phoneNumber = userResult.dataValues.phoneNumber;
             session.name = userResult.dataValues.name;
             session.isLogined = true;
+            session.cookie.httpOnly = false;
             console.log(session);
             session.save(function () {});
             return userResult;
