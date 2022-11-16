@@ -11,23 +11,16 @@ var fileStore = require('session-file-store')(session);
 
 var app = express();
 
-// const whitelist = ['http://localhost:3000', 'https://eric-a.netlify.app'];
-// const corsOptions = {
-//     origin: function (origin, callback) {
-//         if (whitelist.indexOf(origin) !== -1) {
-//             callback(null, true);
-//         }
-//     },
-// };
+const whitelist = ['http://localhost:3000', 'https://eric-a.netlify.app'];
+const corsOptions = {
+    origin: function (origin, callback) {
+        if (whitelist.indexOf(origin) !== -1) {
+            callback(null, true);
+        }
+    },
+};
 
-// app.use(cors(corsOptions));
-
-app.use(
-    cors({
-        origin: true,
-        credentials: true,
-    })
-);
+app.use(cors(corsOptions));
 
 app.use(
     session({
