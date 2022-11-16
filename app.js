@@ -38,7 +38,6 @@ app.use(
     })
 );
 
-var mainRouter = require('./routes/mainRoute');
 var deliveryRouter = require('./routes/deliveryRoute');
 var userRouter = require('./routes/userRoute');
 
@@ -56,7 +55,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/main', mainRouter);
 app.use('/delivery', deliveryRouter);
 app.use('/user', userRouter);
 
