@@ -26,7 +26,7 @@ app.use(cors(corsOptions));
 app.use(
     session({
         secret: 'csyrock',
-        resave: false,
+        resave: true,
         saveUninitialized: true,
         // store: new fileStore(),
     })
