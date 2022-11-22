@@ -7,7 +7,7 @@ var dotenv = require('dotenv');
 var sequelize = require('sequelize');
 var cors = require('cors');
 var session = require('express-session');
-var fileStore = require('session-file-store')(session);
+var history = require('connect-history-api-fallback');
 
 var app = express();
 
@@ -52,6 +52,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(history());
 
 app.use('/delivery', deliveryRouter);
 app.use('/user', userRouter);
