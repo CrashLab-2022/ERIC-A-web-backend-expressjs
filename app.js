@@ -11,7 +11,11 @@ var fileStore = require('session-file-store')(session);
 
 var app = express();
 
-const whitelist = ['http://localhost:3000', 'https://eric-a.netlify.app'];
+const whitelist = [
+    'http://localhost:3000',
+    'https://eric-a.netlify.app',
+    'http://dev.bbbae.shop',
+];
 const corsOptions = {
     origin: function (origin, callback) {
         if (whitelist.indexOf(origin) !== -1) {
