@@ -38,6 +38,7 @@ app.use(
 
 var deliveryRouter = require('./routes/deliveryRoute');
 var userRouter = require('./routes/userRoute');
+var adminRouter = require('./routes/adminRoute');
 
 dotenv.config();
 const db = require('./models');
@@ -56,6 +57,7 @@ app.use(history());
 
 app.use('/delivery', deliveryRouter);
 app.use('/user', userRouter);
+app.use('/admin', adminRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
