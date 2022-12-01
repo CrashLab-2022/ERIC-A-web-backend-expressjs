@@ -7,9 +7,19 @@ var dotenv = require('dotenv');
 var sequelize = require('sequelize');
 var cors = require('cors');
 var session = require('express-session');
-var history = require('connect-history-api-fallback');
+const request = require('request');
 
 var app = express();
+
+// const whitelist = [
+//     'http://localhost:3000',
+//     'https://eric-a.netlify.app',
+//     'http://dev.bbbae.shop',
+// ];
+// const corsOptions = {
+//     // origin: '*',
+//     credentials: true,
+// };
 
 const whitelist = [
     'http://localhost:3000',
@@ -53,7 +63,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(history());
 
 app.use('/delivery', deliveryRouter);
 app.use('/user', userRouter);
