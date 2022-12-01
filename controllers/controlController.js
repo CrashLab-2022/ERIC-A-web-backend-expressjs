@@ -20,4 +20,13 @@ module.exports = {
             }
         );
     },
+    test: async function (req, res) {
+        const request = require('request');
+        request(
+            'http://localhost:3005/index.html',
+            function (error, response, body) {
+                res.status(200).send(body);
+            }
+        );
+    },
 };
