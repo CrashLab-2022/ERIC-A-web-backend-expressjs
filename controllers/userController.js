@@ -46,9 +46,9 @@ module.exports = {
                 session
             );
             if (result != null) {
-                res.status(200).send(session);
+                res.status(200).send(true);
             } else {
-                res.status(500).send('회원 정보 불일치');
+                res.status(200).send(false);
             }
         } catch (err) {
             console.log(err);
