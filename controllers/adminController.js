@@ -11,4 +11,24 @@ module.exports = {
             res.status(400).send(false);
         }
     },
+    signIn: async function (req, res) {
+        let phoneNumber = req.body.phoneNumber;
+        let password = req.body.password;
+        let session = req.session;
+        try {
+            const result = await adminService.signIn(
+                phoneNumber,
+                password,
+                session
+            );
+            if (result != null) {
+                res.status(200).send(true);
+            } else {
+                res.status(200).send(false);
+            }
+        } catch (err) {
+            console.log(err);
+            res.status(400).send('로그인 오류');
+        }
+    },
 };

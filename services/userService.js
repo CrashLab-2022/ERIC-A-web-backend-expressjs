@@ -22,7 +22,7 @@ module.exports = {
         const userResult = await user.findOne({
             where: { phoneNumber: phoneNumber, password: password },
         });
-        if (userResult == null) {
+        if ((userResult == null) | (userResult.dataValues.status == 1)) {
             return null;
         } else {
             session.phoneNumber = userResult.dataValues.phoneNumber;
