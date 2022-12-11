@@ -3,7 +3,7 @@ const deliveryService = require('../services/deliveryService');
 const ResponseDto = require('../dto/ResponseDto');
 const request = require('request');
 
-let url = 'https://heavy-zebras-film-218-235-241-100.loca.lt';
+let url = 'https://nice-flowers-sniff-106-101-3-56.loca.lt';
 
 module.exports = {
     orderDelivery: async function (req, res) {
