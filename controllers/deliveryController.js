@@ -11,6 +11,7 @@ module.exports = {
         try {
             await deliveryService.createDelivery(req, transaction);
             await transaction.commit();
+            console.log('hello');
             request(url + '/start', function (error, response, body) {
                 console.log(body);
             });
