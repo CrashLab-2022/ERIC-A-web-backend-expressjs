@@ -3,7 +3,7 @@ const deliveryService = require('../services/deliveryService');
 const ResponseDto = require('../dto/ResponseDto');
 const request = require('request');
 
-let url = 'https://sharp-toys-accept-106-101-3-191.loca.lt';
+let url = 'https://shy-seas-boil-106-101-3-191.loca.lt';
 
 module.exports = {
     orderDelivery: async function (req, res) {
