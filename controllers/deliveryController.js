@@ -1,6 +1,9 @@
 const { delivery, user, sequelize } = require('../models');
 const deliveryService = require('../services/deliveryService');
 const ResponseDto = require('../dto/ResponseDto');
+const request = require('request');
+
+let url = ' https://silly-pugs-own-218-235-241-149.loca.lt';
 
 module.exports = {
     orderDelivery: async function (req, res) {
@@ -8,6 +11,9 @@ module.exports = {
         try {
             await deliveryService.createDelivery(req, transaction);
             await transaction.commit();
+            request(url + '/start', function (error, response, body) {
+                console.log(body);
+            });
             res.status(200).send({ statusCode: 200, res: '배송 접수 성공' });
         } catch (err) {
             await transaction.rollback();
