@@ -2,7 +2,7 @@ const { delivery, user, sequelize } = require('../models');
 const ResponseDto = require('../dto/ResponseDto');
 const request = require('request');
 
-let url = 'https://khaki-lemons-go-106-101-3-191.loca.lt';
+let url = 'https://puny-ants-hang-106-101-3-191.loca.lt';
 
 module.exports = {
     open: async function (req, res) {
