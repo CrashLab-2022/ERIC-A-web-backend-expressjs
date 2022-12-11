@@ -23,8 +23,8 @@ var app = express();
 
 const whitelist = [
     'http://localhost:3000',
-    'https://eric-a.netlify.app',
     'http://dev.bbbae.shop',
+    'http://www.eric-a.shop',
 ];
 const corsOptions = {
     origin: function (origin, callback) {
