@@ -17,6 +17,7 @@ module.exports = {
                 item: d.dataValues.item,
                 status: d.dataValues.status,
                 date: d.dataValues.date,
+                isAccepted: d.dataValues.isAccepted,
                 time: d.dataValues.time,
             });
         }

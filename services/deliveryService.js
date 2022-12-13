@@ -21,6 +21,7 @@ module.exports = {
                 userId: req.body.userId,
                 date: dateResult,
                 time: timeResult,
+                isAccepted: req.body.isAccepted,
             },
             { transaction: transaction }
         );
@@ -42,6 +43,7 @@ module.exports = {
                     ? '직접 수령하기'
                     : '두고 가기',
                 item: d.dataValues.item,
+                isAccepted: d.dataValues.isAccepted,
                 status: d.dataValues.status,
                 date: d.dataValues.date,
                 time: d.dataValues.time,
