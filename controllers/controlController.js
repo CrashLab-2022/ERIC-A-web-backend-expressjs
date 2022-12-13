@@ -1,8 +1,9 @@
 const { delivery, user, sequelize } = require('../models');
 const ResponseDto = require('../dto/ResponseDto');
 const request = require('request');
+require('dotenv').config();
 
-let url = 'https://shy-seas-boil-106-101-3-191.loca.lt';
+let url = process.env.APPURL;
 
 module.exports = {
     open: async function (req, res) {
