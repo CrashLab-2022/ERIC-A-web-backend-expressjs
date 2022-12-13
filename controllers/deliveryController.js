@@ -4,18 +4,12 @@ const ResponseDto = require('../dto/ResponseDto');
 const request = require('request');
 require('dotenv').config();
 
-let url = process.env.APPURL;
-
 module.exports = {
     orderDelivery: async function (req, res) {
         let transaction = await sequelize.transaction();
         try {
             await deliveryService.createDelivery(req, transaction);
             await transaction.commit();
-            console.log('hello');
-            request(url + '/start', function (error, response, body) {
-                console.log(body);
-            });
             res.status(200).send({ statusCode: 200, res: '배송 접수 성공' });
         } catch (err) {
             await transaction.rollback();

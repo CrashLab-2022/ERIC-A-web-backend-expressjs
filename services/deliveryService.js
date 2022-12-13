@@ -51,4 +51,22 @@ module.exports = {
         }
         return result;
     },
+    acceptDelivery: async function (id) {
+        delivery.update(
+            {
+                isAccepted: '접수 완료',
+                status: '출발 전',
+            },
+            { where: { id: id } }
+        );
+    },
+    refuseDelivery: async function (id) {
+        delivery.update(
+            {
+                isAccepted: '접수 거부',
+                status: '접수 거부',
+            },
+            { where: { id: id } }
+        );
+    },
 };
