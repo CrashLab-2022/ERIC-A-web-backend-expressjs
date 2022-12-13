@@ -31,4 +31,22 @@ module.exports = {
             res.status(400).send('로그인 오류');
         }
     },
+    acceptDelivery: async function (req, res) {
+        let id = req.params.id;
+        try {
+            await adminService.acceptDelivery(id);
+            res.status(200).send(true);
+        } catch (err) {
+            res.status(400).send(false);
+        }
+    },
+    refuseDelivery: async function (req, res) {
+        let id = req.params.id;
+        try {
+            await adminService.refuseDelivery(id);
+            res.status(200).send(true);
+        } catch (err) {
+            res.status(400).send(false);
+        }
+    },
 };

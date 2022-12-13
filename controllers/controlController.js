@@ -6,10 +6,9 @@ require('dotenv').config();
 let url = process.env.APPURL;
 
 module.exports = {
-    open: async function (req, res) {
+    userOpen: async function (req, res) {
         try {
-            console.log('open');
-            request(url + '/open', function (error, response, body) {
+            request(url + '/useropen', function (error, response, body) {
                 console.log(body);
                 res.status(200).send(body);
             });
@@ -18,10 +17,37 @@ module.exports = {
             res.status(400).send(body);
         }
     },
-    test: async function (req, res) {
-        request(url + '/index.html', function (error, response, body) {
-            console.log(body);
-            res.status(200).send(body);
-        });
+    adminOpen: async function (req, res) {
+        try {
+            request(url + '/adminopen', function (error, response, body) {
+                console.log(body);
+                res.status(200).send(body);
+            });
+        } catch (err) {
+            console.log(err);
+            res.status(400).send(body);
+        }
+    },
+    adminClose: async function (req, res) {
+        try {
+            request(url + '/adminclose', function (error, response, body) {
+                console.log(body);
+                res.status(200).send(body);
+            });
+        } catch (err) {
+            console.log(err);
+            res.status(400).send(body);
+        }
+    },
+    adminStart: async function (req, res) {
+        try {
+            request(url + '/adminstart', function (error, response, body) {
+                console.log(body);
+                res.status(200).send(body);
+            });
+        } catch (err) {
+            console.log(err);
+            res.status(400).send(body);
+        }
     },
 };
