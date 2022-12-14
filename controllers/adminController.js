@@ -21,6 +21,7 @@ module.exports = {
                 password,
                 session
             );
+            console.log('login', result);
             if (result != null) {
                 res.status(200).send(true);
             } else {
