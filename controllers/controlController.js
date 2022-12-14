@@ -4,7 +4,7 @@ const ResponseDto = require('../dto/ResponseDto');
 const request = require('request');
 require('dotenv').config();
 
-let url = process.env.APPURL;
+let url = 'http://localhost:3005';
 
 module.exports = {
     userOpen: async function (req, res) {
