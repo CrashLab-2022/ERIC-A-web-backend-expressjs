@@ -55,7 +55,7 @@ module.exports = {
         delivery.update(
             {
                 isAccepted: '접수 완료',
-                status: '출발 전',
+                status: '접수지로 출발',
             },
             { where: { id: id } }
         );
