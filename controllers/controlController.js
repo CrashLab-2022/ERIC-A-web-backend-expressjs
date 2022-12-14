@@ -4,10 +4,14 @@ const ResponseDto = require('../dto/ResponseDto');
 const request = require('request');
 require('dotenv').config();
 
-let url = 'http://77fa-106-101-3-142.ngrok.io';
-let url2 = 'https://eric-a-eric-a.loca.lt';
+let url = process.env.APPURL;
+let url2 = 'http://77fa-106-101-3-142.ngrok.io';
+let url3 = 'https://eric-a-eric-a.loca.lt';
 
 module.exports = {
+    test: async function (req, res) {
+        console.log(url);
+    },
     userOpen: async function (req, res) {
         try {
             request(url + '/useropen', function (error, response, body) {
