@@ -4,7 +4,7 @@ const ResponseDto = require('../dto/ResponseDto');
 const request = require('request');
 require('dotenv').config();
 
-let url = 'https://fine-seals-attack-118-218-37-153.loca.lt';
+let url = 'http://localhost:3005';
 
 module.exports = {
     userOpen: async function (req, res) {
