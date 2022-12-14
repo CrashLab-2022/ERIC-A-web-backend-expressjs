@@ -24,6 +24,8 @@ var app = express();
 const whitelist = [
     'http://localhost:3000',
     'http://user.bbbae.shop',
+    'http://www.bbbae.shop',
+    'http://admin.bbbae.shop',
     'http://www.eric-a.shop',
 ];
 const corsOptions = {
