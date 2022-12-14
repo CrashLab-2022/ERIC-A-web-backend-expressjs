@@ -4,7 +4,7 @@ const ResponseDto = require('../dto/ResponseDto');
 const request = require('request');
 require('dotenv').config();
 
-let url = 'https://fifty-results-bet-218-235-241-148.loca.lt';
+let url = 'https://eric-a-eric-a.loca.lt';
 
 module.exports = {
     userOpen: async function (req, res) {
