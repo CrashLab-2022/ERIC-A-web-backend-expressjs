@@ -4,7 +4,7 @@ const ResponseDto = require('../dto/ResponseDto');
 const request = require('request');
 require('dotenv').config();
 
-let url = 'http://9c86-106-101-3-142.ngrok.io';
+let url = 'http://77fa-106-101-3-142.ngrok.io/test';
 let url2 = 'https://eric-a-eric-a.loca.lt';
 
 module.exports = {
