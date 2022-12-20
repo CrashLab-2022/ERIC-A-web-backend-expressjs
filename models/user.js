@@ -2,14 +2,9 @@ module.exports = function (sequelize, DataTypes) {
     let user = sequelize.define(
         'user',
         {
-            id: {
-                type: DataTypes.INTEGER(11),
+            phoneNumber: {
+                type: DataTypes.STRING(100),
                 primaryKey: true,
-                autoIncrement: true,
-                allowNull: false,
-            },
-            uid: {
-                type: DataTypes.INTEGER(255),
                 allowNull: false,
             },
             name: {
@@ -27,8 +22,8 @@ module.exports = function (sequelize, DataTypes) {
         },
         {}
     );
-    // user.associate = function (models) {
-    //     user.hasMany(models.delivery);
-    // };
+    user.associate = function (models) {
+        user.hasMany(models.delivery);
+    };
     return user;
 };

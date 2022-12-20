@@ -12,10 +12,6 @@ module.exports = function (sequelize, DataTypes) {
                 type: DataTypes.STRING(100),
                 allowNull: false,
             },
-            password: {
-                type: DataTypes.STRING(30),
-                allowNull: false,
-            },
             phoneNumber: {
                 type: DataTypes.STRING(20),
                 allowNull: false,
@@ -36,11 +32,27 @@ module.exports = function (sequelize, DataTypes) {
                 type: DataTypes.INTEGER(1),
                 allowNull: false,
             },
+            status: {
+                type: DataTypes.STRING(100),
+                allowNull: false,
+            },
+            date: {
+                type: DataTypes.STRING(100),
+                allowNull: false,
+            },
+            time: {
+                type: DataTypes.STRING(100),
+                allowNull: false,
+            },
+            isAccepted: {
+                type: DataTypes.STRING(100),
+                allowNull: false,
+            },
         },
         {}
     );
-    // delivery.associate = function (models) {
-    //     delivery.belongsTo(models.user);
-    // };
+    delivery.associate = function (models) {
+        delivery.belongsTo(models.user);
+    };
     return delivery;
 };
