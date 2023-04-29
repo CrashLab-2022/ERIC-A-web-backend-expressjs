@@ -1,12 +1,19 @@
 const { delivery, user, Sequelize } = require('../models');
 
 module.exports = {
-    createUser: async function (req, transaction) {
+    createUser: async function (
+        phoneNumber,
+        name,
+        hashedPassword,
+        salt,
+        transaction
+    ) {
         await user.create(
             {
-                phoneNumber: req.body.phoneNumber,
-                name: req.body.name,
-                password: req.body.password,
+                phoneNumber: phoneNumber,
+                name: name,
+                password: hashedPassword,
+                salt: salt,
                 status: 1,
             },
             { transaction: transaction }
@@ -18,20 +25,14 @@ module.exports = {
         });
         return userResult;
     },
-    signIn: async function (phoneNumber, password, session) {
+    findUserByPhoneNumber: async function (phoneNumber) {
         const userResult = await user.findOne({
-            where: { phoneNumber: phoneNumber, password: password },
+            where: { phoneNumber: phoneNumber },
         });
         if (userResult == null) {
             return null;
         } else {
-            session.phoneNumber = userResult.dataValues.phoneNumber;
-            session.name = userResult.dataValues.name;
-            session.isLogined = true;
-            session.cookie.httpOnly = false;
-            console.log(session);
-            session.save(function () {});
-            return userResult;
+            return userResult.dataValues;
         }
     },
 };
