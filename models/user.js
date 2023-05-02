@@ -12,8 +12,12 @@ module.exports = function (sequelize, DataTypes) {
                 allowNull: false,
             },
             password: {
-                type: DataTypes.STRING(30),
+                type: DataTypes.STRING(128),
                 allowNull: false,
+            },
+            salt: {
+                type: DataTypes.STRING(128),
+                allowNull: true,
             },
             status: {
                 type: DataTypes.INTEGER(1),
