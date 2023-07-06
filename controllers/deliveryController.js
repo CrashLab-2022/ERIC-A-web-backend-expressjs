@@ -1,6 +1,7 @@
+const baseResponse = require('../config/baseResponseStatus');
+const { response, errResponse } = require('../config/response');
 const { delivery, user, sequelize } = require('../models');
 const deliveryService = require('../services/deliveryService');
-const ResponseDto = require('../dto/ResponseDto');
 const request = require('request');
 require('dotenv').config();
 
@@ -10,21 +11,21 @@ module.exports = {
         try {
             await deliveryService.createDelivery(req, transaction);
             await transaction.commit();
-            res.status(200).send({ statusCode: 200, res: '배송 접수 성공' });
+            res.send(response(baseResponse.SUCCESS));
         } catch (err) {
             await transaction.rollback();
             console.log(err);
-            res.status(400).send({ statusCode: 400, res: '배송 접수 실패' });
+            res.send(errResponse(baseResponse.SERVER_ERROR));
         }
     },
     getDeliveryList: async function (req, res) {
         let phoneNumber = req.params.phoneNumber;
         try {
             const result = await deliveryService.findDeliveryByPN(phoneNumber);
-            res.status(200).send(result);
+            res.send(response(baseResponse.SUCCESS, result));
         } catch (err) {
             console.log(err);
-            res.status(400).send(false);
+            res.send(errResponse(baseResponse.SERVER_ERROR));
         }
     },
 };

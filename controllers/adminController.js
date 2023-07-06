@@ -1,3 +1,5 @@
+const baseResponse = require('../config/baseResponseStatus');
+const { response, errResponse } = require('../config/response');
 const { delivery, user, sequelize } = require('../models');
 const adminService = require('../services/adminService');
 
@@ -5,10 +7,10 @@ module.exports = {
     getAllDeliveryList: async function (req, res) {
         try {
             const result = await adminService.findAllDelivery();
-            res.status(200).send(result);
+            res.send(response(baseResponse.SUCCESS));
         } catch (err) {
             console.log(err);
-            res.status(400).send(false);
+            res.send(errResponse(baseResponse.SERVER_ERROR));
         }
     },
     signIn: async function (req, res) {
@@ -23,13 +25,13 @@ module.exports = {
             );
             console.log('login', result);
             if (result != null) {
-                res.status(200).send(true);
+                res.send(response(baseResponse.SUCCESS));
             } else {
-                res.status(200).send(false);
+                res.send(errResponse(baseResponse.SIGNIN_WRONG));
             }
         } catch (err) {
             console.log(err);
-            res.status(400).send('로그인 오류');
+            res.send(errResponse(baseResponse.SERVER_ERROR));
         }
     },
 };
