@@ -57,6 +57,7 @@ module.exports = {
                     session.phoneNumber = userResult.dataValues.phoneNumber;
                     session.name = userResult.dataValues.name;
                     session.isLogined = true;
+                    session.isAdmin = false;
                     session.cookie.httpOnly = false;
                     session.save(function () {});
                     res.status(200).send(true);

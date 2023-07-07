@@ -23,6 +23,7 @@ module.exports = {
             let userResult = await user.findOne({
                 where: {
                     phoneNumber,
+                    isAdmin: 0,
                 },
             });
             if (userResult == null) {
