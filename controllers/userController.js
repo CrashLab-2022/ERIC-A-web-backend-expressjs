@@ -1,50 +1,23 @@
 const { sequelize } = require('../models/index');
 const userService = require('../services/userService');
-const ResponseDto = require('../dto/ResponseDto');
-let crypto = require('crypto');
-
-const createSalt = async function () {
-    const buf = await crypto.randomBytes(64);
-    return buf.toString('base64');
-};
-
-const createHashedPassword = async function (password) {
-    const salt = await createSalt();
-    const key = await crypto.pbkdf2Sync(password, salt, 104906, 64, 'sha512');
-    const hashedPassword = key.toString('base64');
-    return { hashedPassword, salt };
-};
-
-const verifyPassword = async function (password, salt, hashedPassword) {
-    const key = await crypto.pbkdf2Sync(password, salt, 104906, 64, 'sha512');
-    const hPassword = key.toString('base64');
-    console.log(hPassword);
-    if (hPassword == hashedPassword) return true;
-    return false;
-};
+const baseResponse = require('../config/baseResponseStatus');
+const { response, errResponse } = require('../config/response');
 
 module.exports = {
     signUp: async function (req, res) {
-        let transaction = await sequelize.transaction();
-        let hashedResult = await createHashedPassword(req.body.password);
-        let hashedPassword = hashedResult.hashedPassword;
-        let salt = hashedResult.salt;
         let phoneNumber = req.body.phoneNumber;
         let name = req.body.name;
+        let password = req.body.password;
         try {
-            await userService.createUser(
+            let createResult = await userService.createUser(
                 phoneNumber,
                 name,
-                hashedPassword,
-                salt,
-                transaction
+                password
             );
-            await transaction.commit();
-            res.status(200).send({ statusCode: 200, res: '회원가입 성공' });
+            res.send(createResult);
         } catch (err) {
-            await transaction.rollback();
             console.log(err);
-            res.status(400).send({ statusCode: 400, res: '회원가입 실패' });
+            res.send(errResponse(baseResponse.SERVER_ERROR));
         }
     },
     checkPhoneNumber: async function (req, res) {
@@ -76,14 +49,11 @@ module.exports = {
             if (userResult == null) {
                 res.status(200).send(false);
             } else {
-                let hashedPassword = userResult.password;
-                let salt = userResult.salt;
-                const verified = await verifyPassword(
-                    password,
-                    salt,
-                    hashedPassword
+                const verified = await userService.verifyPassword(
+                    phoneNumber,
+                    password
                 );
-                if (verified) {
+                if (verified.result) {
                     session.phoneNumber = userResult.dataValues.phoneNumber;
                     session.name = userResult.dataValues.name;
                     session.isLogined = true;
