@@ -2,36 +2,12 @@ module.exports = {
     // Success
     SUCCESS: { isSuccess: true, code: 1000, message: '성공' },
 
-    NOT_ENOUGHDATA: {
-        isSuccess: false,
-        code: 400,
-        message: '필요한 정보가 부족합니다.',
-    },
-
+    //Request error
     BAD_REQUEST: {
         isSuccess: false,
-        code: 400,
+        code: 2000,
         message: '유효하지 않은 요청입니다.',
     },
-
-    // Common
-    TOKEN_EMPTY: {
-        isSuccess: false,
-        code: 2000,
-        message: 'JWT 토큰을 입력해주세요.',
-    },
-    TOKEN_VERIFICATION_FAILURE: {
-        isSuccess: false,
-        code: 3000,
-        message: 'JWT 토큰 검증 실패',
-    },
-    TOKEN_VERIFICATION_SUCCESS: {
-        isSuccess: true,
-        code: 1001,
-        message: 'JWT 토큰 검증 성공',
-    }, // ?
-
-    //Request error
     SIGNUP_EMAIL_EMPTY: {
         isSuccess: false,
         code: 2001,
@@ -149,7 +125,6 @@ module.exports = {
         code: 3002,
         message: '중복된 닉네임입니다.',
     },
-
     SIGNIN_WRONG: {
         isSuccess: false,
         code: 3003,
@@ -169,12 +144,6 @@ module.exports = {
         isSuccess: false,
         code: 3006,
         message: '탈퇴 된 계정입니다. 고객센터에 문의해주세요.',
-    },
-
-    BOOKMARK_REDUNDANT: {
-        isSuccess: false,
-        code: 409,
-        message: '이미 관심목록에 존재합니다.',
     },
 
     NOT_FOUND: {

@@ -23,7 +23,6 @@ module.exports = {
                 password,
                 session
             );
-            console.log('login', result);
             if (result != null) {
                 res.send(response(baseResponse.SUCCESS));
             } else {

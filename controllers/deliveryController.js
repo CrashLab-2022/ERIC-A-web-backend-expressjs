@@ -19,13 +19,19 @@ module.exports = {
         }
     },
     getDeliveryList: async function (req, res) {
-        let phoneNumber = req.params.phoneNumber;
-        try {
-            const result = await deliveryService.findDeliveryByPN(phoneNumber);
-            res.send(response(baseResponse.SUCCESS, result));
-        } catch (err) {
-            console.log(err);
-            res.send(errResponse(baseResponse.SERVER_ERROR));
+        if (req.session.phoneNumber != req.params.phoneNumber) {
+            res.send(errResponse(baseResponse.BAD_REQUEST));
+        } else {
+            let phoneNumber = req.params.phoneNumber;
+            try {
+                const result = await deliveryService.findDeliveryByPN(
+                    phoneNumber
+                );
+                res.send(response(baseResponse.SUCCESS, result));
+            } catch (err) {
+                console.log(err);
+                res.send(errResponse(baseResponse.SERVER_ERROR));
+            }
         }
     },
 };
