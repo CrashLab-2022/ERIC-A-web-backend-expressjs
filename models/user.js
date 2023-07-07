@@ -19,9 +19,9 @@ module.exports = function (sequelize, DataTypes) {
                 type: DataTypes.STRING(128),
                 allowNull: true,
             },
-            status: {
+            isAdmin: {
                 type: DataTypes.INTEGER(1),
-                defaultValue: 1,
+                defaultValue: 0,
             },
         },
         {}

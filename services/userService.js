@@ -14,7 +14,7 @@ module.exports = {
             name: name,
             password: hashedPassword,
             salt: salt,
-            status: 1,
+            isAdmin: 0,
         });
         return response(baseResponse.SUCCESS);
     },
