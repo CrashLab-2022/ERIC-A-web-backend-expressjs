@@ -33,4 +33,20 @@ module.exports = {
             res.send(errResponse(baseResponse.SERVER_ERROR));
         }
     },
+    signUp: async function (req, res) {
+        let phoneNumber = req.body.phoneNumber;
+        let name = req.body.name;
+        let password = req.body.password;
+        try {
+            let createResult = await adminService.createAdmin(
+                phoneNumber,
+                name,
+                password
+            );
+            res.send(createResult);
+        } catch (err) {
+            console.log(err);
+            res.send(errResponse(baseResponse.SERVER_ERROR));
+        }
+    },
 };

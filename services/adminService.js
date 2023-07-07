@@ -1,4 +1,7 @@
 const { delivery, user } = require('../models');
+let crypto = require('crypto');
+const baseResponse = require('../config/baseResponseStatus');
+const { response, errResponse } = require('../config/response');
 
 module.exports = {
     findAllDelivery: async function () {
@@ -38,5 +41,19 @@ module.exports = {
             session.save(function () {});
             return userResult;
         }
+    },
+    createAdmin: async function (phoneNumber, name, password) {
+        let salt = crypto.randomBytes(64).toString('base64');
+        let hashedPassword = crypto
+            .pbkdf2Sync(password, salt, 12345, 64, 'sha512')
+            .toString('base64');
+        await user.create({
+            phoneNumber: phoneNumber,
+            name: name,
+            password: hashedPassword,
+            salt: salt,
+            isAdmin: 1,
+        });
+        return response(baseResponse.SUCCESS);
     },
 };
