@@ -53,6 +53,7 @@ var deliveryRouter = require('./routes/deliveryRoute');
 var userRouter = require('./routes/userRoute');
 var adminRouter = require('./routes/adminRoute');
 var controlRouter = require('./routes/controlRoute');
+var payRouter = require('./routes/payRoute');
 
 dotenv.config();
 const db = require('./models');
@@ -60,7 +61,8 @@ db.sequelize.sync();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+app.set('view engine', 'ejs');
+app.engine('ejs', require('ejs').__express);
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -72,6 +74,7 @@ app.use('/delivery', deliveryRouter);
 app.use('/user', userRouter);
 app.use('/admin', adminRouter);
 app.use('/control', controlRouter);
+app.use('/pay', payRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -86,7 +89,7 @@ app.use(function (err, req, res, next) {
 
     // render the error page
     res.status(err.status || 500);
-    res.render('error');
+    res.send('error');
 });
 
 module.exports = app;
