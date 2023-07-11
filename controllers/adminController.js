@@ -56,4 +56,26 @@ module.exports = {
             res.send(errResponse(baseResponse.SERVER_ERROR));
         }
     },
+    getSession: async function (req, res) {
+        if (req.session.isLogined !== undefined) {
+            if (req.session.isAdmin) {
+                res.status(200).send(req.session);
+            } else {
+                res.status(200).send(false);
+            }
+        } else {
+            res.status(200).send(false);
+        }
+    },
+    checkLogin: async function (req, res) {
+        if (req.session.isLogined !== undefined) {
+            if (req.session.isAdmin) {
+                res.status(200).send(true);
+            } else {
+                res.status(200).send(false);
+            }
+        } else {
+            res.status(200).send(false);
+        }
+    },
 };
