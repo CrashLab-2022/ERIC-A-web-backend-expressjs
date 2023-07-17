@@ -50,6 +50,15 @@ module.exports = {
                 name,
                 password
             );
+            if (createResult.isSuccess) {
+                let session = req.session;
+                session.phoneNumber = phoneNumber;
+                session.name = name;
+                session.isLogined = true;
+                session.isAdmin = true;
+                session.cookie.httpOnly = false;
+                session.save(function () {});
+            }
             res.send(createResult);
         } catch (err) {
             console.log(err);
