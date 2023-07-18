@@ -1,6 +1,5 @@
 const { delivery, user, sequelize } = require('../models');
 const deliveryService = require('../services/deliveryService');
-const ResponseDto = require('../dto/ResponseDto');
 const request = require('request');
 require('dotenv').config();
 
