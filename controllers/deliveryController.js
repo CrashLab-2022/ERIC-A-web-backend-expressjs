@@ -19,7 +19,10 @@ module.exports = {
         }
     },
     getDeliveryList: async function (req, res) {
-        if (req.session.phoneNumber != req.params.phoneNumber) {
+        if (
+            !req.session.isAdmin &&
+            req.session.phoneNumber != req.params.phoneNumber
+        ) {
             res.send(errResponse(baseResponse.BAD_REQUEST));
         } else {
             let phoneNumber = req.params.phoneNumber;
