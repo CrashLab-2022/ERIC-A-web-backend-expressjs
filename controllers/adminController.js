@@ -8,7 +8,7 @@ module.exports = {
     getAllDeliveryList: async function (req, res) {
         try {
             const result = await adminService.findAllDelivery();
-            res.send(response(baseResponse.SUCCESS));
+            res.send(response(baseResponse.SUCCESS, result));
         } catch (err) {
             console.log(err);
             res.send(errResponse(baseResponse.SERVER_ERROR));
