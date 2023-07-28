@@ -8,6 +8,7 @@ var sequelize = require('sequelize');
 var cors = require('cors');
 var session = require('express-session');
 const request = require('request');
+require('./controllers/socketController');
 
 var app = express();
 
