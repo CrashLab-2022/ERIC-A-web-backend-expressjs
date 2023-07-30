@@ -33,7 +33,7 @@ module.exports = {
         try {
             const phoneNumber = req.params.phoneNumber;
             const userResult = await userService.findByPhoneNumber(phoneNumber);
-            if (userResult == null) {
+            if (userResult.result == null) {
                 res.status(200).send({
                     statusCode: 200,
                     res: true,
@@ -55,7 +55,7 @@ module.exports = {
         let session = req.session;
         try {
             const userResult = await userService.findByPhoneNumber(phoneNumber);
-            if (userResult == null) {
+            if (userResult.result == null) {
                 res.status(200).send(false);
             } else {
                 const verified = await userService.verifyPassword(
