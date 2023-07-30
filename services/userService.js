@@ -42,10 +42,14 @@ module.exports = {
         }
     },
     findByPhoneNumber: async function (phoneNumber) {
-        const userResult = await user.findOne({
-            where: { phoneNumber: phoneNumber },
-        });
-        return userResult;
+        try {
+            const userResult = await user.findOne({
+                where: { phoneNumber: phoneNumber },
+            });
+            return response(baseResponse.SUCCESS, userResult);
+        } catch (err) {
+            return errResponse(baseResponse.DB_ERROR);
+        }
     },
     findUserByPhoneNumber: async function (phoneNumber) {
         const userResult = await user.findOne({
