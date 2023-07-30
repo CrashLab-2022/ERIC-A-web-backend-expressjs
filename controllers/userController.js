@@ -55,8 +55,10 @@ module.exports = {
         let session = req.session;
         try {
             const userResult = await userService.findByPhoneNumber(phoneNumber);
-            if (userResult.result == null) {
-                res.status(200).send(false);
+            if (userResult.isSuccess == false) {
+                res.send(userResult);
+            } else if (userResult.result == null) {
+                res.send(errResponse(baseResponse.USER_USERID_NOT_EXIST));
             } else {
                 const verified = await userService.verifyPassword(
                     phoneNumber,
@@ -69,14 +71,14 @@ module.exports = {
                     session.isAdmin = false;
                     session.cookie.httpOnly = false;
                     session.save(function () {});
-                    res.status(200).send(true);
+                    res.send(response(baseResponse.SUCCESS));
                 } else {
-                    res.status(200).send(false);
+                    res.send(errResponse(baseResponse.SIGNIN_PASSWORD_WRONG));
                 }
             }
         } catch (err) {
             console.log(err);
-            res.status(400).send('로그인 오류');
+            res.send(errResponse(baseResponse.SERVER_ERROR));
         }
     },
     checkLogin: async function (req, res) {
