@@ -54,7 +54,7 @@ module.exports = {
         let password = req.body.password;
         let session = req.session;
         try {
-            const userResult = await userService.findByPhoneNumber(phoneNumber);
+            let userResult = await userService.findByPhoneNumber(phoneNumber);
             if (userResult.isSuccess == false) {
                 res.send(userResult);
             } else if (userResult.result == null) {
@@ -65,6 +65,7 @@ module.exports = {
                     password
                 );
                 if (verified.result) {
+                    userResult = userResult.result;
                     session.phoneNumber = userResult.dataValues.phoneNumber;
                     session.name = userResult.dataValues.name;
                     session.isLogined = true;
